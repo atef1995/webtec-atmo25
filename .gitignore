@@ -3,3 +3,4 @@ node_modules/
 .AppleDouble
 .LSOverride
 download_lab.bash
+.vscode
