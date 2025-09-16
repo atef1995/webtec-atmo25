@@ -1,24 +1,5 @@
-.siteheader nav ul {
-  display: flex;    /* Arrange navigation links in a horizontal row */
-  gap: 1rem;        /* Add spacing between individual navigation links */
-  list-style: none; /* Remove default bullet points from the list */
-  margin: 0;        /* Remove default margin around the list */
-  padding: 0;       /* Remove default padding around the list */
-}
-
-/* Styling for navigation links */
-.siteheader nav a {
-  text-decoration: none;  /* Remove the default underline from links */
-  color: #006400;       /* Set a dark green color for the navigation links */
-  font-size: 1rem;        /* Define the font size for the links */
-  font-weight: bold;      /* Make the text bold for better readability */
-  transition: color 0.3s, border-bottom 0.3s; /* Add a smooth transition for color and border changes on hover */
-}
-
-/* Hover effect for navigation links */
-.siteheader nav a:hover {
-  color: #2e8b57;             /* Change the text color to forest green when hovered */
-  text-decoration: underline;   /* Add an underline to the link when hovered */
+.siteheader a {
+  text-decoration: none;
 }
 
 /* Styling for the logo image */
@@ -35,22 +16,73 @@
   font-family: 'Arial', sans-serif; /* Use Arial font, fallback to sans-serif */
 }
 
-/* Styling for the logo and heading link */
-.siteheader a {
-  display: flex;          /* Arrange the logo and text in a horizontal row */
-  align-items: center;    /* Align the logo and text vertically at the center */
-  gap: 0.5rem;            /* Add spacing between the logo image and the text */
-  text-decoration: none;  /* Remove the default underline from the link */
-  color: inherit;         /* Inherit the color from the parent element for consistency */
+
+/* Header as a flex container with two columns */
+.siteheader {
+  display: flex;                  /* Use flexbox */
+  justify-content: space-between; /* Space between left and right columns */
+  align-items: center;            /* Vertically center items */
+  padding: 10px 20px;             /* Add some padding */
+  background-color: #333;       /* Dark background color */
+  color: white;                   /* White text color */
 }
 
-/* General styling for the header */
-.siteheader {
-  display: flex;                  /* Use flexbox to arrange child elements horizontally */
-  justify-content: space-between; /* Place items at both ends of the header */
-  align-items: center;            /* Vertically align items to the center */
-  padding: 1rem 2rem;             /* Add spacing inside the header (1rem top/bottom, 2rem left/right) */
-  background-color: #eaf5ea;    /* Set a light green background color */
-  border-bottom: 2px solid #2e8b57;   /* Add a forest green border at the bottom */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);   /* Apply a subtle shadow for a slight 3D effect */
+
+/* Right column - navigation bar */
+.navbar {
+  position: relative;              /* Optional: needed if dropdown uses absolute positioning */
+}
+
+/* Navigation links displayed in a row */
+.nav-links {
+  list-style: none;                /* Remove bullets */
+  display: flex;                   /* Display links in a row */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;               /* Space between links */
+}
+
+.nav-links a {
+  text-decoration: none;           /* Remove underline */
+  color: white;                    /* White text for links */
+}
+
+/* Hamburger menu button */
+.menu-toggle {
+  display: none;                   /* Hidden by default */
+  background: none;                /* No background */
+  border: none;                    /* No border */
+  font-size: 1.8em;                /* Bigger font for hamburger icon */
+  color: white;                    /* White color */
+  cursor: pointer;                 /* Pointer cursor on hover */
+}
+
+/* Responsive styles: when screen is smaller than 600px */
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;                /* Show hamburger button on small screens */
+  }
+
+  .nav-links {
+    display: none;                 /* Hide links by default */
+    flex-direction: column;        /* Stack links vertically */
+    position: absolute;            /* Position relative to navbar */
+    top: 50px;                     /* Place below header */
+    right: 0;
+    background-color: #444;
+    width: 150px;
+    padding: 10px;
+  }
+
+  .nav-links li {
+    margin: 10px 0;                /* Space between stacked links */
+  }
+
+  /* Show menu when 'show' class is added by JS */
+  .nav-links.show {
+    display: flex;
+  }
 }

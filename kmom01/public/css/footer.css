@@ -17,7 +17,7 @@
 
 /* Individual footer column */
 .footer-column {
-  flex: 1;                      /* Equal width for each column */
+  flex: 1 1 100%;                      /* Equal width for each column */
   background-color: #3a3a3a;  /* Slightly lighter gray background for pop */
   padding: 1rem;                /* Add padding inside columns */
   border-radius: 8px;           /* Rounded corners for columns */
@@ -54,4 +54,11 @@
   font-size: 0.85rem;           /* Smaller text size */
   border-top: 1px solid #444;   /* Subtle border at the top */
   padding-top: 0.5rem;          /* Reduce space above the text */
+}
+
+@media (max-width: 600px) {
+  .footer-triptych {
+    display: flex;
+    flex-direction: column;
+  }
 }
