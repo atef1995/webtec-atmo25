@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
+    <header class="siteheader">
+        <a href="me.html">
+            <img src="img/logo-1.png" alt="Logotyp">
+            <span>Kursen webtec</span>
+        </a>
         <nav>
             <ul>
                 <li><a href="me.html">Hem</a></li>
@@ -17,46 +21,108 @@
         </nav>
     </header>
 
-    <main>
-        <div class="container two-column">
-            <div class="main-content">
-                <h1>Om kursen</h1>
-                <p>Denna kurs handlar om webbutveckling med HTML, CSS och JavaScript.</p>
-                <p>Vi lär oss grunderna i att skapa moderna webbplatser.</p>
+    <div class="wrap">
+        <main class="main">
+            <article class="article">
+                <h1>Om kursen webtec</h1>
 
-                <h2>Kursrepo</h2>
-                <p>Kursmaterial finns på <a href="https://github.com/dbwebb-se/webtec">GitHub</a>.</p>
+                <p>Kursen webtec är en grundkurs i webbutveckling som fokuserar på de fundamentala teknologierna för att skapa moderna webbplatser. Kursen täcker HTML för struktur, CSS för styling och layout samt JavaScript för interaktivitet och dynamisk funktionalitet.</p>
 
-                <img src="img/course.jpg" alt="Kursbild" class="course-image">
-            </div>
+                <p>Genom kursen lär vi oss att bygga responsiva webbplatser som fungerar bra på alla enheter, från mobiler till stationära datorer. Vi arbetar också med utvecklingsverktyg som Git för versionshantering, linters för kodkvalitet och moderna arbetssätt inom webbutveckling.</p>
 
-            <aside>
-                <h3>Kursinfo</h3>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>Responsiv design</li>
-                </ul>
-            </aside>
+                <h2>Kursrepo och material</h2>
+                <p>Allt kursmaterial och exempel finns tillgängligt på kursens officiella repository på GitHub: <a href="https://github.com/dbwebb-se/webtec" target="_blank" rel="noopener">dbwebb-se/webtec</a>. Här hittar du övningar, uppgifter och exempel som används genom hela kursen.</p>
+
+                <figure class="course-image-container">
+                    <img src="https://bth-webtec.github.io/website/_astro/leaf_256x256.BsaaHpWX.png" alt="Webbutveckling med HTML, CSS och JavaScript" class="course-image">
+                    <figcaption>Modern webbutveckling kombinerar struktur, design och interaktivitet</figcaption>
+                </figure>
+
+                <h2>Kursmål och innehåll</h2>
+                <p>Efter genomgången kurs ska studenten kunna utveckla välstrukturerade webbplatser med ren kod som följer web standards. Kursen betonar vikten av semantisk HTML, effektiv CSS och väl organiserad JavaScript-kod.</p>
+            </article>
+        </main>
+
+        <aside class="aside">
+            <h3>Teknologier i kursen</h3>
+            <ul>
+                <li>HTML5 - Semantisk markup</li>
+                <li>CSS3 - Modern styling och layout</li>
+                <li>JavaScript - Interaktivitet och DOM</li>
+                <li>Git - Versionshantering</li>
+                <li>NPM - Pakethantering</li>
+                <li>ESLint - Kodkvalitet</li>
+            </ul>
+
+            <h3>Utvecklingsverktyg</h3>
+            <ul>
+                <li>Visual Studio Code</li>
+                <li>Browser DevTools</li>
+                <li>W3C Validators</li>
+                <li>HTTP Server</li>
+            </ul>
+
+            <h3>Viktiga koncept</h3>
+            <ul>
+                <li>Responsiv design</li>
+                <li>Web standards</li>
+                <li>Tillgänglighet</li>
+                <li>Prestanda</li>
+                <li>SEO-grunder</li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer class="sitefooter">
+      <div class="footer-triptych">
+        <div class="footer-column">
+          <h3>Tekniker</h3>
+          <ul>
+            <li>
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference"
+                >MDN: HTML referens</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference"
+                >MDN: CSS referens</a
+              >
+            </li>
+            <li>
+              <a href="https://html.spec.whatwg.org/multipage/"
+                >HTML Standard</a
+              >
+            </li>
+            <li><a href="https://www.w3.org/Style/CSS/">CSS Standard</a></li>
+            <li>
+              <a href="https://www.w3.org/2009/cheatsheet/">Cheat Sheet</a>
+            </li>
+          </ul>
         </div>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Kontakt</h3>
-                <p>Email: exempel@student.se</p>
-            </div>
-            <div class="footer-section">
-                <h3>Information</h3>
-                <p>Webtec kurs</p>
-            </div>
-            <div class="footer-section">
-                <h3>Copyright</h3>
-                <p>&copy; <span id="current-year"></span> [Ditt namn]</p>
-            </div>
+        <div class="footer-column">
+          <h3>Tutorials</h3>
+          <ul>
+            <li>
+              <a href="https://www.w3schools.com/html/">W3schools html</a>
+            </li>
+            <li><a href="https://www.w3schools.com/css/">W3schools css</a></li>
+          </ul>
         </div>
+        <div class="footer-column">
+          <h3>Verktyg</h3>
+          <ul>
+            <li><a href="https://caniuse.com/">Can i use</a></li>
+            <li><a href="https://codepen.io/">Codepen</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy;<span id="current-year"></span> Kursen Webtec. Copyright av mig.
+        </p>
+      </div>
     </footer>
 
     <script src="js/hello.js"></script>
