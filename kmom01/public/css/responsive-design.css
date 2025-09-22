@@ -109,23 +109,9 @@
    ============================================================================= */
 
 /**
- * Enhanced footer triptych with better responsive stacking
+ * Footer responsive behavior is handled in footer.css
+ * No additional enhancements needed here
  */
-.footer-triptych {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.footer-column {
-  flex: 1;
-  min-width: 200px;
-  background-color: #3a3a3a;
-  padding: 1rem;
-  border-radius: 8px;
-}
 
 /* =============================================================================
    MEDIA QUERIES FOR RESPONSIVE BREAKPOINTS
@@ -164,16 +150,6 @@
  * Full responsive stacking (navigation styles in header.css)
  */
 @media (max-width: 600px) {
-
-  /* Footer columns stack vertically on mobile */
-  .footer-triptych {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .footer-column {
-    min-width: auto;
-  }
 
   /* Reduce padding on mobile */
   .wrap {
