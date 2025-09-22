@@ -197,7 +197,7 @@ ul {
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */ /* Removed for baseline compatibility */
   border-bottom: 1px solid var(--bg-tertiary);
   z-index: 1000;
   padding: var(--spacing-md) 0;
@@ -283,7 +283,7 @@ ul {
   background-position: center;
   color: var(--text-white);
   position: relative;
-  padding-top: calc(var(--spacing-4xl) + 80px);
+  padding-top: calc(6rem + 80px);
 }
 
 .hero-section::before {
@@ -653,9 +653,7 @@ ul {
   margin-bottom: var(--spacing-lg);
 }
 
-.contact-info {
-  space-y: var(--spacing-md);
-}
+/* .contact-info spacing is handled by .contact-item margin-bottom */
 
 .contact-item {
   margin-bottom: var(--spacing-md);
