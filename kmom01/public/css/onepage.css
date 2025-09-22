@@ -837,6 +837,20 @@ ul {
     padding: 0 var(--spacing-md);
   }
 
+  /* Header responsive adjustments */
+  .header-container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .logo-text {
+    font-size: var(--font-size-xl);
+  }
+
+  .logo img {
+    width: 32px;
+    height: 32px;
+  }
+
   /* Typography scaling */
   .hero-title {
     font-size: var(--font-size-3xl);
@@ -938,6 +952,25 @@ ul {
   /* Extra small screens */
   .container {
     padding: 0 var(--spacing-sm);
+  }
+
+  /* Header extra small screens */
+  .header-container {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .logo-text {
+    font-size: var(--font-size-lg);
+  }
+
+  .logo img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .menu-toggle {
+    font-size: var(--font-size-xl);
+    padding: var(--spacing-xs);
   }
 
   .hero-title {
