@@ -96,18 +96,9 @@
    ============================================================================= */
 
 /**
- * Enhanced hamburger menu styling for better responsive behavior
+ * Enhanced hamburger menu hover effect
+ * Base hamburger menu styles are defined in header.css
  */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: white;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
 .menu-toggle:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
@@ -170,36 +161,9 @@
 
 /**
  * Mobile screens (600px and below)
- * Full responsive stacking and mobile-first navigation
+ * Full responsive stacking (navigation styles in header.css)
  */
 @media (max-width: 600px) {
-  /* Show hamburger menu on mobile */
-  .menu-toggle {
-    display: block;
-  }
-
-  /* Stack navigation vertically */
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #444;
-    width: 200px;
-    padding: 1rem;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links li {
-    margin: 0.5rem 0;
-    margin-left: 0;
-  }
 
   /* Footer columns stack vertically on mobile */
   .footer-triptych {
