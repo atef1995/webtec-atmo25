@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redovisning</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive-design.css">
+</head>
+
+<body>
+  <header class="siteheader">
+    <a href="me.html">
+      <img src="img/logo-1.png" alt="Logotyp">
+      <span>Kursen webtec</span>
+    </a>
+    <nav class="navbar">
+      <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="me.html">Hem</a></li>
+        <li><a href="about.html">Om</a></li>
+        <li><a href="report.html">Redovisning</a></li>
+        <li><a href="onepage.html">Onepage</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="wrap layout-two-column">
+    <main class="main">
+      <article class="article">
+        <h1>Redovisning</h1>
+
+        <p>Här kommer mina redovisningstexter från de olika kursmomenten i denna kursen.</p>
+
+        <section id="kmom01">
+          <h2>kmom01</h2>
+
+          <p>Min utvecklingsmiljö för denna kurs består av Visual Studio Code som huvudsaklig editor, Git för
+            versionshantering och Node.js för att köra utvecklingsverktyg som ESLint och http-server. Jag har också
+            installerat npm-paket som är nödvändiga för kursen enligt instruktionerna. Utvecklingsmiljön känns bekant
+            och stabil, vilket gör det enkelt att fokusera på själva kodandet istället för att krångla med verktyg.</p>
+
+          <p>Installationen av kursens utvecklingsmiljö gick relativt smidigt. Jag hade redan Git och Node.js
+            installerat sedan tidigare, så det var mest en fråga om att klona kursrepot och installera npm-dependencies.
+            ESLint-konfigurationen var lite ny för mig, men efter att ha läst dokumentationen förstod jag hur den
+            fungerar och varför den är användbar för att hålla konsistent kodkvalitet.</p>
+
+          <p>Jag har jobbat en del med terminalen tidigare, framförallt grundläggande Unix-kommandon som ls, cd, mkdir
+            och git-kommandon. Det känns naturligt att navigera i filsystemet via kommandoraden och att använda Git för
+            versionshantering. Terminalen är definitivt ett kraftfullt verktyg när man väl lärt sig grunderna.</p>
+
+          <p>HTML, CSS och JavaScript är tekniker jag stött på tidigare, men mest på en grundläggande nivå. Jag har
+            byggt enkla webbsidor tidigare, men inte med den struktur och organisation som vi använder i denna kurs. Det
+            var intressant att se hur man kan strukturera ett projekt med separata mappar för CSS och JavaScript, och
+            hur man kan skapa en konsistent design med återanvändbara komponenter som header och footer.</p>
+
+          <p>Att komma igång med kursmomentet var överlag ganska rakt fram. Den stegvisa övningen hjälpte mycket att
+            förstå hur alla delar hänger ihop. Det som var lite utmanande var att förstå CSS-layouten med grid för
+            två-kolumners design, men efter lite experimenterande började det klarna. JavaScript-delen för att sätta
+            aktuellt år var enkel men smart - det visar hur man kan använda JavaScript för praktiska funktioner.</p>
+
+          <p>Min TIL för detta kursmoment är hur kraftfullt aside och main är för att skapa layouter. Tidigare har jag
+            mest använt divs för positionering</p>
+        </section>
+
+        <section id="kmom02">
+          <h2>kmom02</h2>
+
+          <p>Här kommer redovisningstexten för detta kursmoment.</p>
+        </section>
+
+        <section id="kmom03">
+          <h2>kmom03</h2>
+
+          <p>Här kommer redovisningstexten för detta kursmoment.</p>
+        </section>
+      </article>
+    </main>
+    <aside class="aside">
+      <h4>Innehållsförteckning</h4>
+
+      <ul>
+        <li><a href="#kmom01">kmom01</a></li>
+        <li><a href="#kmom02">kmom02</a></li>
+        <li><a href="#kmom03">kmom03</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="sitefooter">
+    <div class="footer-triptych">
+      <div class="footer-column">
+        <h3>Tekniker</h3>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference">MDN: HTML referens</a>
+          </li>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">MDN: CSS referens</a>
+          </li>
+          <li>
+            <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>
+          </li>
+          <li><a href="https://www.w3.org/Style/CSS/">CSS Standard</a></li>
+          <li>
+            <a href="https://www.w3.org/2009/cheatsheet/">Cheat Sheet</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Tutorials</h3>
+        <ul>
+          <li>
+            <a href="https://www.w3schools.com/html/">W3schools html</a>
+          </li>
+          <li><a href="https://www.w3schools.com/css/">W3schools css</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Verktyg</h3>
+        <ul>
+          <li><a href="https://caniuse.com/">Can i use</a></li>
+          <li><a href="https://codepen.io/">Codepen</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        &copy;<span id="current-year"></span> Kursen Webtec. Copyright av mig.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/hello.js"></script>
+  <script src="js/responsive-design.js"></script>
+
+</body>
+
+</html>

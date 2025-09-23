@@ -1,0 +1,135 @@
+/* Basic reset and typography */
+@import url("normalize.css");
+@import url("header.css");
+@import url("footer.css");
+
+/**
+ * Use flexbox container for layout.
+ */
+.wrap {
+  display: flex;    /* Enables Flexbox layout */
+  flex-wrap: wrap;  /* Allows items to wrap onto the next line if needed */
+  gap: 1rem;        /* Adds spacing between child elements */
+  background-color: #FFFFFF; /* White */
+  padding: 1rem;               /* Adds padding around the container */
+}
+
+.main {
+  flex: 3;          /* Allocates 3 parts of available space to the main area */
+  padding: 1rem;                /* Adds space inside the main area */
+  border-radius: 8px;           /* Rounds the corners of the main area */
+  background-color: #f9f9f9;  /* Light gray background for better contrast */
+}
+
+.aside {
+  flex: 1;          /* Allocates 1 part of available space to the aside */
+  background-color: #f1f1f1; /* Slightly darker gray background */
+  padding: 1rem;                /* Adds space inside the main area */
+  border-radius: 8px;           /* Rounds the corners of the main area */
+}
+
+.aside li {
+  list-style: none;
+  margin: 0.3rem;
+}
+
+.aside ul {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+/**
+ * General styles for the article.
+ */
+.article {
+  background-color: #fdfdfd; /* Light background for better readability */
+  border: 1px solid #ddd;      /* Subtle border to separate it from other content */
+  border-radius: 8px;          /* Rounded corners for a modern look */
+  padding: 1.5rem;             /* Space around the content */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
+}
+
+/**
+ * Styling the header section.
+ */
+.article header {
+  border-bottom: 2px solid #ccc;  /* Divider line for better visual structure */
+  padding-bottom: 0.5rem;         /* Space between the header and the content below */
+  margin-bottom: 1rem;            /* Space below the header */
+}
+
+/**
+ * Styling the article title.
+ */
+.article h1 {
+  font-size: 1.8rem;  /* Larger font size for the title */
+  color: #333;        /* Darker color for contrast */
+  margin: 0;          /* Removes default margin */
+}
+
+/**
+ * Styling the author information.
+ */
+.article .author {
+  font-size: 0.9rem;  /* Smaller font size for secondary information */
+  color: #555;        /* Gray color for subtlety */
+  margin-top: 0.5rem; /* Space above the author line */
+}
+
+/**
+ * Styling the paragraphs.
+ */
+.article p {
+  line-height: 1.6;     /* Improved readability with increased line spacing */
+  margin-bottom: 1rem;  /* Space between paragraphs */
+}
+
+/**
+ * Styling the figure element.
+ */
+.figure {
+  margin: 1rem;       /* Space around the figure */
+}
+
+.figure img {
+  max-width: 100%;    /* Ensures images are responsive */
+  display: block;     /* Removes inline spacing below the image */
+}
+
+.figure figcaption {
+  font-size: 0.9rem;  /* Smaller font for captions */
+  color: #777;        /* Lighter gray for less emphasis */
+  text-align: center; /* Centers the caption below the image */
+  margin-top: 0.5rem; /* Space above the caption */
+}
+
+.figure.right {
+  float: right;    /* Aligns the figure to the right side of its container,
+                         allowing text to wrap around it */
+  margin-right: 0; /* Remove space to the right of the figure */
+}
+
+/**
+ * Styling the footer section.
+ */
+.article .byline {
+  border-top: 2px solid #ccc;   /* Divider line for separation */
+  padding-top: 1rem;            /* Space above the footer content */
+  margin-top: 1rem;             /* Space below the footer content */
+  display: flex;                /* Flexbox for layout */
+  align-items: center;          /* Aligns content vertically */
+  gap: 1rem;                    /* Space between the image and text */
+}
+
+/* Styling the image in the footer */
+.article .byline img {
+  border-radius: 50%;           /* Circular image */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for a polished look */
+}
+
+/* Styling the footer text */
+.article .byline p {
+  margin: 0;        /* Removes default margin */
+  font-size: 1rem;  /* Slightly larger font for clarity */
+  color: #444;      /* Neutral dark text */
+}
