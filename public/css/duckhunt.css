@@ -10,3 +10,13 @@
   display: flex;
   padding: 2px;
 }
+
+/* Game section styling for background display */
+.game-section {
+  width: 100%;
+  min-height: 600px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
