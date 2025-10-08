@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Webtec Course</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card h2 {
+      color: #667eea;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .project-card p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .project-tag {
+      display: inline-block;
+      background: #f0f0f0;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #555;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .arrow {
+      color: #667eea;
+      font-size: 1.5rem;
+      float: right;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .arrow {
+      transform: translateX(5px);
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Webtec Course Projects</h1>
+    <p class="subtitle">Select a project to view</p>
+
+    <div class="projects-grid">
+      <a href="docs/index.html" class="project-card">
+        <h2>Course Report <span class="arrow">→</span></h2>
+        <p>My course documentation and reports from different course moments (kmom01-kmom06). Includes reflections, learnings, and technical implementations.</p>
+        <div>
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+      </a>
+
+      <a href="public/duckhunt.html" class="project-card">
+        <h2>Duck Hunt Game <span class="arrow">→</span></h2>
+        <p>A classic duck hunt game built with vanilla JavaScript. Features customizable game settings, scoring system, and dynamic duck positioning.</p>
+        <div>
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">Game Development</span>
+          <span class="project-tag">Fetch API</span>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <p>&copy; <span id="current-year"></span> Webtec Course Projects</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear()
+  </script>
+</body>
+
+</html>
