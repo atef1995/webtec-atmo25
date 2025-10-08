@@ -7,6 +7,7 @@ const info = document.getElementById("info")
 const gameSection = document.getElementById("game-section")
 const confirmButton = document.getElementById("confirmButton")
 const ankan = document.getElementById("ankan")
+const score = document.getElementById("score")
 
 // Global game state object
 const gameData = {
@@ -174,6 +175,8 @@ const handleDuckClick = () => {
 
   // Increment score
   gameData.score++
+
+  score.innerText = "score:" + gameData.score
 
   // Reposition duck immediately after hit
   randomiseDuckPlacement()
