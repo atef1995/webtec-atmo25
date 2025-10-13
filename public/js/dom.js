@@ -11,5 +11,19 @@ centerBox()
 window.onresize = centerBox
 
 box.addEventListener('click', () => {
-  box.classList.add('outline')
+  if (box.classList.contains('outline')) {
+    box.classList.remove('outline')
+  } else {
+    box.classList.add('outline')
+  }
+})
+
+box.addEventListener('dblclick', () => {
+  box.classList.add('animateSize')
+  box.style.width = "2px"
+  box.style.height = "2px"
+
+  setTimeout(() => {
+    box.remove()
+  }, 2000)
 })

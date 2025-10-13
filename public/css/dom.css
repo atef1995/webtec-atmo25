@@ -9,4 +9,9 @@
   outline: 0.5rem solid red;
   border-color: red;
   border-radius: 5px 5px 5px 5px;
+  outline-offset: 0.3rem;
+}
+
+.animateSize{
+  transition: width 1s, height 1s;
 }
