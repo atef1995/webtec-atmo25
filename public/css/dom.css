@@ -2,9 +2,11 @@
   height: 200px;
   width: 200px;
   background-color: aqua;
+  border: 0.5rem solid transparent;
 }
 
-#box .outline {
-  border-radius: 1px;
-  border-color: blueviolet;
+.box.outline {
+  outline: 0.5rem solid red;
+  border-color: red;
+  border-radius: 5px 5px 5px 5px;
 }
