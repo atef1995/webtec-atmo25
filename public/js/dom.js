@@ -1,4 +1,5 @@
 const box = document.getElementById("box")
+
 const centerBox = () => {
   console.log(window.innerHeight + " ," + window.innerWidth)
   box.style.position = "absolute"
@@ -8,3 +9,7 @@ const centerBox = () => {
 centerBox()
 
 window.onresize = centerBox
+
+box.addEventListener('click', () => {
+  box.classList.add('outline')
+})

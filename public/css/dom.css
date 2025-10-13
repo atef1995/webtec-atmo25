@@ -3,3 +3,8 @@
   width: 200px;
   background-color: aqua;
 }
+
+#box .outline {
+  border-radius: 1px;
+  border-color: blueviolet;
+}
