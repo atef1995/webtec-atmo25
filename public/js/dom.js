@@ -1,10 +1,9 @@
-const box = document.getElementById("box")
-const boxes = document.getElementsByClassName("box")
+const box = document.getElementById('box')
+const boxes = document.getElementsByClassName('box')
 const centerBox = () => {
-  console.log(window.innerHeight + " ," + window.innerWidth)
-  box.style.position = "absolute"
-  box.style.top = window.innerHeight / 2 + "px"
-  box.style.right = window.innerWidth / 2 + "px"
+  box.style.position = 'absolute'
+  box.style.top = window.innerHeight / 2 + 'px'
+  box.style.right = window.innerWidth / 2 + 'px'
 }
 centerBox()
 
@@ -22,8 +21,8 @@ box.addEventListener('click', (e) => toggleSelected(e.target))
 
 const doubleClick = () => {
   box.classList.add('animateSize')
-  box.style.width = "2px"
-  box.style.height = "2px"
+  box.style.width = '2px'
+  box.style.height = '2px'
 
   setTimeout(() => {
     box.remove()
@@ -37,8 +36,8 @@ const keyboardPress = (ev) => {
 
 const deleteElement = (element) => {
   element.classList.add('animateSize')
-  element.style.width = "2px"
-  element.style.height = "2px"
+  element.style.width = '2px'
+  element.style.height = '2px'
 
   setTimeout(() => {
     element.remove()
@@ -47,19 +46,19 @@ const deleteElement = (element) => {
 
 document.addEventListener('keydown', (ev) => {
   ev.preventDefault()
-  const colorArray = ["bg-red", "bg-orange", "bg-yellow", "bg-green", "bg-blue", "bg-indigo", "bg-violet"]
+  const colorArray = ['bg-red', 'bg-orange', 'bg-yellow', 'bg-green', 'bg-blue', 'bg-indigo', 'bg-violet']
   const selectedBoxes = document.getElementsByClassName('selected')
-  if (ev.key === "e") {
+  if (ev.key === 'e') {
     for (let index = 0; index < selectedBoxes.length; index++) {
       const element = selectedBoxes[index]
-      if (element.classList.contains("circular")) {
-        element.classList.remove("circular")
+      if (element.classList.contains('circular')) {
+        element.classList.remove('circular')
       } else {
-        element.classList.add("circular")
+        element.classList.add('circular')
       }
     }
   } else if (ev.key === 'r') {
-    console.log("r pressed")
+    console.log('r pressed')
 
     for (let index = 0; index < selectedBoxes.length; index++) {
       const element = selectedBoxes[index]
@@ -67,7 +66,7 @@ document.addEventListener('keydown', (ev) => {
 
       element.classList.forEach((value) => {
         if (colorArray.includes(value)) {
-          console.log("removing color" + value)
+          console.log('removing color' + value)
           element.classList.remove(value)
           indexOfNextColor = colorArray.indexOf(value) + 1
         }
@@ -78,15 +77,26 @@ document.addEventListener('keydown', (ev) => {
         element.classList.add(colorArray[indexOfNextColor])
       }
     }
-  } else if (ev.key === "i" || ev.key === 'u') {
+  } else if (ev.key === 'i' || ev.key === 'u') {
     for (let index = 0; index < boxes.length; index++) {
       const element = boxes[index]
       toggleSelected(element)
     }
-  } else if (ev.key === "y") {
+  } else if (ev.key === 'y') {
     for (let index = 0; index < selectedBoxes.length; index++) {
       const element = selectedBoxes[index]
       deleteElement(element)
     }
+  } else if (ev.key === 'p') {
+    console.log('p pressed')
+
+    const newBox = document.createElement('div')
+    newBox.className = 'box'
+    newBox.style.position = 'absolute'
+    newBox.style.top = Math.floor(Math.random() * window.innerHeight + 1) + 'px'
+    newBox.style.right = Math.floor(Math.random() * window.innerWidth + 1) + 'px'
+    newBox.addEventListener('click', (e) => toggleSelected(e.target))
+
+    document.body.appendChild(newBox)
   }
 })
