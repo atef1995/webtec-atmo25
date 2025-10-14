@@ -37,7 +37,7 @@ const keyboardPress = (ev) => {
 
 document.addEventListener('keydown', (ev) => {
   ev.preventDefault()
-
+  const colorArray = ["bg-red", "bg-orange", "bg-yellow", "bg-green", "bg-blue", "bg-indigo", "bg-violet"]
   const selectedBoxes = document.getElementsByClassName('selected')
   if (ev.key === "e") {
     for (let index = 0; index < selectedBoxes.length; index++) {
@@ -46,6 +46,26 @@ document.addEventListener('keydown', (ev) => {
         element.classList.remove("circular")
       } else {
         element.classList.add("circular")
+      }
+    }
+  } else if (ev.key === 'r') {
+    console.log("r pressed")
+
+    for (let index = 0; index < selectedBoxes.length; index++) {
+      const element = selectedBoxes[index]
+      let indexOfNextColor = 0
+
+      element.classList.forEach((value) => {
+        if (colorArray.includes(value)) {
+          console.log("removing color" + value)
+          element.classList.remove(value)
+          indexOfNextColor = colorArray.indexOf(value) + 1
+        }
+      })
+      if (indexOfNextColor >= colorArray.length) {
+        element.classList.add(colorArray[0])
+      } else {
+        element.classList.add(colorArray[indexOfNextColor])
       }
     }
   }
