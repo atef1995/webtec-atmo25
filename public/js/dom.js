@@ -1,5 +1,5 @@
 const box = document.getElementById("box")
-
+const boxes = document.getElementsByClassName("box")
 const centerBox = () => {
   console.log(window.innerHeight + " ," + window.innerWidth)
   box.style.position = "absolute"
@@ -10,7 +10,7 @@ centerBox()
 
 window.onresize = centerBox
 
-const toggleSelected = () => {
+const toggleSelected = (box) => {
   if (box.classList.contains('outline')) {
     box.classList.remove('outline', 'selected')
   } else {
@@ -18,7 +18,7 @@ const toggleSelected = () => {
   }
 }
 
-box.addEventListener('click', () => toggleSelected())
+box.addEventListener('click', (e) => toggleSelected(e.target))
 
 const doubleClick = () => {
   box.classList.add('animateSize')
@@ -33,6 +33,16 @@ const doubleClick = () => {
 box.addEventListener('dblclick', () => doubleClick())
 
 const keyboardPress = (ev) => {
+}
+
+const deleteElement = (element) => {
+  element.classList.add('animateSize')
+  element.style.width = "2px"
+  element.style.height = "2px"
+
+  setTimeout(() => {
+    element.remove()
+  }, 2000)
 }
 
 document.addEventListener('keydown', (ev) => {
@@ -67,6 +77,16 @@ document.addEventListener('keydown', (ev) => {
       } else {
         element.classList.add(colorArray[indexOfNextColor])
       }
+    }
+  } else if (ev.key === "i" || ev.key === 'u') {
+    for (let index = 0; index < boxes.length; index++) {
+      const element = boxes[index]
+      toggleSelected(element)
+    }
+  } else if (ev.key === "y") {
+    for (let index = 0; index < selectedBoxes.length; index++) {
+      const element = selectedBoxes[index]
+      deleteElement(element)
     }
   }
 })
