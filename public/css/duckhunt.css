@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.main-content h1 {
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-content label {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.main-content input {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid white;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center;
+}
+
+.confirmButton {
+  margin-top: 30px;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #667eea;
+  background: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.confirmButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.confirmButton:active {
+  transform: translateY(0);
+}
+
+.game-section {
+  display: none;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.game-section.active {
+  display: block;
+}
+
+#score {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px 30px;
+  border-radius: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.ankan {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: crosshair;
+  transition: left 0.3s ease, top 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.loading {
+  font-size: 1.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
