@@ -158,3 +158,18 @@ function moveDuck() {
   ankan.style.left = `${randomX}px`;
   ankan.style.top = `${randomY}px`;
 }
+
+// Handle duck click
+function handleDuckClick() {
+  if (!game.isRunning) return;
+
+  // Increment score
+  game.score++;
+  updateScore();
+
+  // Move duck immediately after being clicked
+  moveDuck();
+}
+
+// Add click event listener to duck
+ankan.addEventListener('click', handleDuckClick);
