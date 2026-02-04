@@ -238,18 +238,18 @@ export function trafficlightSwitch (color) {
   color = color.toLowerCase()
 
   switch(color) {
-    case "red":
-      result = "Stop"
-      break
-    case "yellow":
-      result = "Wait"
-      break
-    case "green":
-      result = "Go"
-      break
-    default:
-      result = "Invalid color"
-      break
+  case "red":
+    result = "Stop"
+    break
+  case "yellow":
+    result = "Wait"
+    break
+  case "green":
+    result = "Go"
+    break
+  default:
+    result = "Invalid color"
+    break
   }
   return result
 }
@@ -278,21 +278,21 @@ export function calculator (value1, value2, op, reverse=false) {
   }
 
   switch(op) {
-    case "+":
-      result = val1 + val2
-      break
-    case "-":
-      result = val1 - val2
-      break
-    case "*":
-      result = val1 * val2
-      break
-    case "/":
-      result = val1 / val2
-      break
-    case "%":
-      result = val1 % val2
-      break
+  case "+":
+    result = val1 + val2
+    break
+  case "-":
+    result = val1 - val2
+    break
+  case "*":
+    result = val1 * val2
+    break
+  case "/":
+    result = val1 / val2
+    break
+  case "%":
+    result = val1 % val2
+    break
   }
   return result
 }

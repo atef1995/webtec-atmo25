@@ -30,10 +30,10 @@ export class dbw {
   /**
    * Color output
    */
-  static RESET = "\x1b[0m";
-  static GREEN = "\x1b[32m";
-  static RED = "\x1b[31m";
-  static YELLOW = "\x1b[33m";
+  static RESET = "\x1b[0m"
+  static GREEN = "\x1b[32m"
+  static RED = "\x1b[31m"
+  static YELLOW = "\x1b[33m"
 
   /**
    * Define the levels to PASS, PASS W HONOUR, PASS TOTAL.
