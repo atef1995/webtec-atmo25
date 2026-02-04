@@ -159,3 +159,95 @@ function moveDuck() {
   ankan.style.top = `${randomY}px`
 }
 
+// Handle duck click
+function handleDuckClick() {
+  if (!game.isRunning) return
+
+  // Increment score
+  game.score++
+  updateScore()
+
+  // Move duck immediately after being clicked
+  moveDuck()
+}
+
+// Add click event listener to duck
+ankan.addEventListener('click', handleDuckClick)
+
+// End game function
+function endGame() {
+  // Stop the game
+  game.isRunning = false
+
+  // Clear intervals
+  if (game.intervalId) {
+    clearInterval(game.intervalId)
+    game.intervalId = null
+  }
+  if (game.timerIntervalId) {
+    clearInterval(game.timerIntervalId)
+    game.timerIntervalId = null
+  }
+
+  // Hide duck
+  ankan.style.display = 'none'
+
+  // Show final score
+  scoreDisplay.textContent = `Game Over! Final Score: ${game.score}`
+  scoreDisplay.style.fontSize = '3rem'
+  scoreDisplay.style.top = '50%'
+  scoreDisplay.style.left = '50%'
+  scoreDisplay.style.transform = 'translate(-50%, -50%)'
+  scoreDisplay.style.right = 'auto'
+
+  // Create restart button
+  const restartButton = document.createElement('button')
+  restartButton.textContent = 'Play Again'
+  restartButton.className = 'confirmButton'
+  restartButton.style.position = 'absolute'
+  restartButton.style.top = '60%'
+  restartButton.style.left = '50%'
+  restartButton.style.transform = 'translate(-50%, -50%)'
+  restartButton.addEventListener('click', resetGame)
+  gameSection.appendChild(restartButton)
+}
+
+// Reset game function
+function resetGame() {
+  // Remove restart button if it exists
+  const restartButton = gameSection.querySelector('.confirmButton')
+  if (restartButton) {
+    restartButton.remove()
+  }
+
+  // Reset score display styling
+  scoreDisplay.style.fontSize = '2rem'
+  scoreDisplay.style.top = '20px'
+  scoreDisplay.style.right = '20px'
+  scoreDisplay.style.left = 'auto'
+  scoreDisplay.style.transform = 'none'
+
+  // Show duck again
+  ankan.style.display = 'block'
+
+  // Hide game section, show setup
+  gameSection.classList.remove('active')
+  mainContent.classList.remove('hidden')
+
+  // Reset form
+  infoText.textContent = 'Please wait...'
+  confirmButton.disabled = false
+  backgroundInput.value = 0
+  gameLengthInput.value = 30
+  gameSpeedInput.value = 2
+
+  // Clean up blob URLs
+  if (game.duckImage) {
+    URL.revokeObjectURL(game.duckImage)
+    game.duckImage = null
+  }
+  if (game.backgroundImage) {
+    URL.revokeObjectURL(game.backgroundImage)
+    game.backgroundImage = null
+  }
+}
