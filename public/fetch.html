@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CO2 Data Comparison</title>
+  <link rel="stylesheet" href="./css/fetch.css">
+</head>
+
+<body>
+  <main class="main-content">
+    <h1>CO2 Emissions Comparison</h1>
+    <p class="subtitle">Compare CO2 emissions data between Sweden, Norway, and Denmark</p>
+
+    <div class="controls">
+      <label for="year-selector">Select Year (1900-2019):</label>
+      <select id="year-selector" title="Select year">
+        <option value="">-- Select a year --</option>
+      </select>
+    </div>
+
+    <div id="loading" class="loading" style="display: none;">
+      Loading data...
+    </div>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+
+    <div class="table-container">
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Population</th>
+            <th>CO2 Emissions (tonnes)</th>
+            <th>CO2 per Capita (tonnes)</th>
+            <th>GDP</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Data will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="js/fetch.js"></script>
+</body>
+
+</html>

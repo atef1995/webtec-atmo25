@@ -1,0 +1,184 @@
+/**
+ * Responsive Design CSS for kmom02
+ * Following the exercise techniques: flexbox, media queries, column stacking
+ */
+
+/* =============================================================================
+   RESPONSIVE LAYOUT SYSTEM
+   ============================================================================= */
+
+/**
+ * Enhanced responsive wrap container using flexbox
+ * Allows for flexible column arrangements that stack on smaller screens
+ */
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+}
+
+/**
+ * Responsive main content area
+ * Flexible sizing with minimum width for proper stacking
+ */
+.main {
+  flex: 1;
+  min-width: 300px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+/**
+ * Responsive aside/sidebar
+ * Flexible sizing with minimum width for proper stacking
+ */
+.aside {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+/* =============================================================================
+   SPECIFIC LAYOUT CONFIGURATIONS
+   ============================================================================= */
+
+/**
+ * Two-column layout (for report.html)
+ * Main content takes more space, aside is secondary
+ */
+.layout-two-column .main {
+  flex: 2;
+  order: 1;
+}
+
+.layout-two-column .aside {
+  flex: 1;
+  order: 2;
+}
+
+/**
+ * Three-column layout (for about.html)
+ * Main in center, two asides on sides
+ */
+.layout-three-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.layout-three-column .aside-left {
+  flex: 1;
+  min-width: 200px;
+  order: 1;
+}
+
+.layout-three-column .main {
+  flex: 2;
+  min-width: 300px;
+  order: 2;
+}
+
+.layout-three-column .aside-right {
+  flex: 1;
+  min-width: 200px;
+  order: 3;
+}
+
+/* =============================================================================
+   RESPONSIVE NAVIGATION ENHANCEMENTS
+   ============================================================================= */
+
+/**
+ * Enhanced hamburger menu hover effect
+ * Base hamburger menu styles are defined in header.css
+ */
+.menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* =============================================================================
+   RESPONSIVE FOOTER ENHANCEMENTS
+   ============================================================================= */
+
+/**
+ * Footer responsive behavior is handled in footer.css
+ * No additional enhancements needed here
+ */
+
+/* =============================================================================
+   MEDIA QUERIES FOR RESPONSIVE BREAKPOINTS
+   ============================================================================= */
+
+/**
+ * Tablet and smaller screens (768px and below)
+ * Adjust layouts for medium-sized screens
+ */
+@media (max-width: 768px) {
+  .wrap {
+    flex-direction: column;
+  }
+
+  .main,
+  .aside {
+    min-width: auto;
+    max-width: none;
+  }
+
+  /* Three-column layout becomes single column on tablets */
+  .layout-three-column .aside-left,
+  .layout-three-column .main,
+  .layout-three-column .aside-right {
+    order: initial;
+    min-width: auto;
+  }
+
+  .layout-three-column .main {
+    order: -1; /* Main content first on mobile */
+  }
+}
+
+/**
+ * Mobile screens (600px and below)
+ * Full responsive stacking (navigation styles in header.css)
+ */
+@media (max-width: 600px) {
+
+  /* Reduce padding on mobile */
+  .wrap {
+    padding: 0.5rem;
+  }
+
+  .main,
+  .aside {
+    padding: 0.75rem;
+  }
+}
+
+/**
+ * Large screens (1024px and above)
+ * Optimize layouts for desktop viewing
+ */
+@media (min-width: 1024px) {
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Three-column layout gets more defined widths on large screens */
+  .layout-three-column .aside-left,
+  .layout-three-column .aside-right {
+    flex: 0 0 250px;
+  }
+
+  .layout-three-column .main {
+    flex: 1;
+  }
+}

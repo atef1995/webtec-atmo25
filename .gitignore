@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.AppleDouble
+.LSOverride
+download_lab.bash
+.vscode
+ovning2
