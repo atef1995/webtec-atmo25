@@ -134,3 +134,27 @@ function startGame() {
 function updateScore() {
   scoreDisplay.textContent = `Score: ${game.score} | Time: ${game.timeRemaining}s`;
 }
+
+// Move duck to random position
+function moveDuck() {
+  if (!game.isRunning) return;
+
+  // Get game section dimensions
+  const gameWidth = gameSection.offsetWidth;
+  const gameHeight = gameSection.offsetHeight;
+
+  // Get duck dimensions
+  const duckWidth = 100; // Set in CSS
+  const duckHeight = 100; // Set in CSS
+
+  // Calculate random position ensuring duck stays fully inside
+  const maxX = gameWidth - duckWidth;
+  const maxY = gameHeight - duckHeight;
+
+  const randomX = Math.floor(Math.random() * maxX);
+  const randomY = Math.floor(Math.random() * maxY);
+
+  // Position the duck
+  ankan.style.left = `${randomX}px`;
+  ankan.style.top = `${randomY}px`;
+}
