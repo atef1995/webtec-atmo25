@@ -94,3 +94,43 @@ async function setupGame() {
     confirmButton.disabled = false;
   }
 }
+
+// Start game function
+function startGame() {
+  // Hide setup screen, show game screen
+  mainContent.classList.add('hidden');
+  gameSection.classList.add('active');
+
+  // Set background image
+  gameSection.style.backgroundImage = `url('${game.backgroundImage}')`;
+
+  // Set duck image
+  ankan.style.backgroundImage = `url('${game.duckImage}')`;
+
+  // Initialize game state
+  game.isRunning = true;
+  game.score = 0;
+  game.timeRemaining = game.gameLength;
+
+  // Update score display
+  updateScore();
+
+  // Start game timer (countdown)
+  game.timerIntervalId = setInterval(() => {
+    game.timeRemaining--;
+    updateScore();
+
+    if (game.timeRemaining <= 0) {
+      endGame();
+    }
+  }, 1000);
+
+  // Start duck movement
+  moveDuck();
+  game.intervalId = setInterval(moveDuck, game.gameSpeed * 1000);
+}
+
+// Update score display
+function updateScore() {
+  scoreDisplay.textContent = `Score: ${game.score} | Time: ${game.timeRemaining}s`;
+}
