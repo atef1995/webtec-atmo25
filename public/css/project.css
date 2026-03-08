@@ -208,3 +208,56 @@ img {
   transform: translateY(-2px);
 }
 
+/* ===== Layout: Columns ===== */
+.two-column-layout {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.two-column-layout .column {
+  flex: 1;
+}
+
+.three-column-layout {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.three-column-layout .column {
+  flex: 1;
+}
+
+/* ===== About Section ===== */
+.about-section {
+  background-color: var(--color-bg);
+}
+
+.about-section h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.about-section p {
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.7;
+}
+
+.game-preview-image {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background-color: #ddd;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-preview-image img {
+  width: 100%;
+  height: auto;
+}
+
