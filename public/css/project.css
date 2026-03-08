@@ -1,1 +1,135 @@
 /* Project styles for Duckhunt 2 onepage */
+
+/* ===== CSS Variables ===== */
+:root {
+  --color-primary: #1b5e20;
+  --color-primary-light: #4caf50;
+  --color-primary-dark: #0d3311;
+  --color-accent: #ff6f00;
+  --color-accent-light: #ffa040;
+  --color-text: #212121;
+  --color-text-light: #fafafa;
+  --color-bg: #fafafa;
+  --color-bg-dark: #1a1a2e;
+  --color-bg-section: #f0f4f0;
+
+  --font-main: 'Segoe UI', Arial, sans-serif;
+  --font-heading: Georgia, 'Times New Roman', serif;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+
+  --header-height: 70px;
+}
+
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Header ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--color-primary-dark);
+  transition: background-color 0.3s ease;
+}
+
+.site-header.scrolled {
+  background-color: rgba(13, 51, 17, 0.95);
+  box-shadow: var(--shadow-md);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-md);
+  height: var(--header-height);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-text-light);
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.navbar {
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-sm);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-text-light);
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: var(--color-primary-light);
+  color: #fff;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
