@@ -261,3 +261,60 @@ img {
   height: auto;
 }
 
+/* ===== Features Section ===== */
+.features-section {
+  background-color: var(--color-bg-section);
+}
+
+.feature-card {
+  background-color: #fff;
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.feature-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.feature-card p {
+  line-height: 1.7;
+  color: #555;
+}
+
+.how-to-play {
+  margin-top: var(--spacing-lg);
+  background-color: #fff;
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.how-to-play h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.how-to-play ol {
+  padding-left: 1.5rem;
+  line-height: 2;
+  color: #444;
+}
+
