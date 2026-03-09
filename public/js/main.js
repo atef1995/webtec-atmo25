@@ -14,6 +14,9 @@ const game = {
   timerIntervalId: null
 }
 
+// Highscore list (resets on page reload)
+const highscores = []
+
 // DOM elements
 const mainContent = document.getElementById('main-content')
 const gameSection = document.getElementById('game-section')
@@ -143,7 +146,9 @@ function startGame() {
 
 // Update score display
 function updateScore() {
-  scoreDisplay.textContent = `Score: ${game.score} | Time: ${game.timeRemaining}s`
+  const difficultyLabels = { easy: 'Lätt', normal: 'Normal', hard: 'Svår' }
+  const label = difficultyLabels[game.difficulty] || game.difficulty
+  scoreDisplay.textContent = `Poäng: ${game.score} | Tid: ${game.timeRemaining}s | ${label}`
 }
 
 // Move duck to random position
@@ -203,24 +208,18 @@ function endGame() {
   // Hide duck
   ankan.style.display = 'none'
 
-  // Show final score
-  scoreDisplay.textContent = `Game Over! Final Score: ${game.score}`
-  scoreDisplay.style.fontSize = '3rem'
-  scoreDisplay.style.top = '50%'
-  scoreDisplay.style.left = '50%'
-  scoreDisplay.style.transform = 'translate(-50%, -50%)'
-  scoreDisplay.style.right = 'auto'
+  // Save to highscore list
+  highscores.push({
+    score: game.score,
+    difficulty: game.difficulty,
+    date: new Date().toLocaleTimeString('sv-SE')
+  })
 
-  // Create restart button
-  const restartButton = document.createElement('button')
-  restartButton.textContent = 'Play Again'
-  restartButton.className = 'confirmButton'
-  restartButton.style.position = 'absolute'
-  restartButton.style.top = '60%'
-  restartButton.style.left = '50%'
-  restartButton.style.transform = 'translate(-50%, -50%)'
-  restartButton.addEventListener('click', resetGame)
-  gameSection.appendChild(restartButton)
+  // Sort highscores by score descending
+  highscores.sort((a, b) => b.score - a.score)
+
+  // Show game over with highscore table
+  showGameOver()
 }
 
 // Reset game function
@@ -258,4 +257,64 @@ function resetGame() {
     URL.revokeObjectURL(game.backgroundImage)
     game.backgroundImage = null
   }
+}
+
+// Show game over screen with highscore table
+function showGameOver() {
+  const difficultyLabels = { easy: 'Lätt', normal: 'Normal', hard: 'Svår' }
+
+  // Create overlay
+  const overlay = document.createElement('div')
+  overlay.className = 'game-over-overlay'
+  overlay.id = 'game-over-overlay'
+
+  // Game over title
+  const title = document.createElement('h2')
+  title.className = 'game-over-title'
+  title.textContent = 'Spelet är slut!'
+  overlay.appendChild(title)
+
+  // Final score
+  const scoreText = document.createElement('p')
+  scoreText.className = 'game-over-score'
+  scoreText.textContent = `Din poäng: ${game.score} (${difficultyLabels[game.difficulty]})`
+  overlay.appendChild(scoreText)
+
+  // Highscore table
+  const table = document.createElement('table')
+  table.className = 'highscore-table'
+
+  const thead = document.createElement('thead')
+  thead.innerHTML = '<tr><th>#</th><th>Poäng</th><th>Nivå</th><th>Tid</th></tr>'
+  table.appendChild(thead)
+
+  const tbody = document.createElement('tbody')
+  highscores.forEach((entry, index) => {
+    const row = document.createElement('tr')
+    if (entry.score === game.score && entry.date === highscores.find(h => h.score === game.score && h.date === entry.date).date) {
+      row.className = index === highscores.findIndex(h => h === entry) ? '' : ''
+    }
+    const label = difficultyLabels[entry.difficulty] || entry.difficulty
+    row.innerHTML = `<td>${index + 1}</td><td>${entry.score}</td><td>${label}</td><td>${entry.date}</td>`
+
+    // Highlight the latest entry
+    if (entry === highscores.find(h => h.score === game.score && h.date === entry.date) && !row.classList.contains('highlighted')) {
+      row.classList.add('current-score')
+    }
+    tbody.appendChild(row)
+  })
+  table.appendChild(tbody)
+  overlay.appendChild(table)
+
+  // Restart button
+  const restartBtn = document.createElement('button')
+  restartBtn.className = 'confirmButton'
+  restartBtn.textContent = 'Spela Igen'
+  restartBtn.addEventListener('click', () => {
+    overlay.remove()
+    resetGame()
+  })
+  overlay.appendChild(restartBtn)
+
+  gameSection.appendChild(overlay)
 }
