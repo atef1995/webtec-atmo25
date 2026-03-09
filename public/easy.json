@@ -1,0 +1,9 @@
+{
+  "difficulty": "easy",
+  "label": "Lätt",
+  "gameLength": 45,
+  "gameSpeed": 3,
+  "duckSize": 130,
+  "backgroundPicture": 0,
+  "description": "Längre tid och långsammare ankor. Perfekt för nybörjare!"
+}
