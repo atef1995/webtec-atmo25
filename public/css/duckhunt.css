@@ -22,10 +22,17 @@ body {
 }
 
 .main-content h1 {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-size: 2.5rem;
   text-shadow: 3px 3px 0px #000;
   color: #ffeb3b;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .main-content label {
@@ -126,5 +133,77 @@ body {
     opacity: 0.3;
     color: #ff5722;
   }
+}
+
+/* Difficulty Form */
+.difficulty-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.difficulty-fieldset {
+  border: 3px solid #ff5722;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.difficulty-fieldset legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffeb3b;
+  padding: 0 10px;
+}
+
+.difficulty-option {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  margin: 8px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.difficulty-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.difficulty-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.difficulty-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.difficulty-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  padding-left: 26px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #ffeb3b;
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
