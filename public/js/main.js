@@ -1,8 +1,10 @@
 // Global game object
 const game = {
+  difficulty: 'normal',
   backgroundPicture: 0,
   gameLength: 30,
   gameSpeed: 2,
+  duckSize: 100,
   score: 0,
   timeRemaining: 0,
   isRunning: false,
@@ -16,53 +18,60 @@ const game = {
 const mainContent = document.getElementById('main-content')
 const gameSection = document.getElementById('game-section')
 const infoText = document.getElementById('info')
-const backgroundInput = document.getElementById('background-picture')
-const gameLengthInput = document.getElementById('game-length')
-const gameSpeedInput = document.getElementById('game-speed')
+const difficultyForm = document.getElementById('difficulty-form')
 const confirmButton = document.getElementById('confirmButton')
 const scoreDisplay = document.getElementById('score')
 const ankan = document.getElementById('ankan')
 
-// Initialize input default values
-backgroundInput.value = 0
-gameLengthInput.value = 30
-gameSpeedInput.value = 2
+// Check URL parameter for pre-selected difficulty
+const urlParams = new URLSearchParams(window.location.search)
+const urlDifficulty = urlParams.get('difficulty')
+
+if (urlDifficulty && ['easy', 'normal', 'hard'].includes(urlDifficulty)) {
+  const radio = difficultyForm.querySelector(`input[value="${urlDifficulty}"]`)
+  if (radio) {
+    radio.checked = true
+  }
+}
 
 // Event listener for confirm button
 confirmButton.addEventListener('click', setupGame)
 
-// Setup game function
-async function setupGame() {
-  // Get user input values
-  game.backgroundPicture = parseInt(backgroundInput.value)
-  game.gameLength = parseInt(gameLengthInput.value)
-  game.gameSpeed = parseInt(gameSpeedInput.value)
-  game.score = 0
-  game.timeRemaining = game.gameLength
+// Get selected difficulty from form
+function getSelectedDifficulty() {
+  const selected = difficultyForm.querySelector('input[name="difficulty"]:checked')
+  return selected ? selected.value : 'normal'
+}
 
-  // Validate inputs
-  if (game.backgroundPicture < 0 || game.backgroundPicture > 5) {
-    alert('Background picture must be between 0 and 5')
-    return
-  }
-  if (![10, 20, 30].includes(game.gameLength)) {
-    alert('Game length must be 10, 20, or 30 seconds')
-    return
-  }
-  if (game.gameSpeed < 1 || game.gameSpeed > 3) {
-    alert('Game speed must be between 1 and 3')
-    return
-  }
+// Setup game function — fetch config from JSON
+async function setupGame() {
+  const difficulty = getSelectedDifficulty()
+  game.difficulty = difficulty
 
   // Show loading message
-  infoText.textContent = 'Loading images...'
+  infoText.textContent = 'Laddar konfiguration...'
   infoText.classList.add('loading')
   confirmButton.disabled = true
 
   try {
+    // Fetch config from JSON file
+    const configResponse = await fetch(`${difficulty}.json`)
+    if (!configResponse.ok) throw new Error('Failed to fetch config')
+    const config = await configResponse.json()
+
+    // Apply config
+    game.gameLength = config.gameLength
+    game.gameSpeed = config.gameSpeed
+    game.duckSize = config.duckSize
+    game.backgroundPicture = config.backgroundPicture
+    game.score = 0
+    game.timeRemaining = game.gameLength
+
+    infoText.textContent = 'Laddar bilder...'
+
     // If background is 0, randomize it
-    const bgNumber = game.backgroundPicture === 0 
-      ? Math.floor(Math.random() * 5) + 1 
+    const bgNumber = game.backgroundPicture === 0
+      ? Math.floor(Math.random() * 5) + 1
       : game.backgroundPicture
 
     // Fetch duck image
@@ -80,7 +89,7 @@ async function setupGame() {
     game.backgroundImage = URL.createObjectURL(bgBlob)
 
     // Images loaded successfully
-    infoText.textContent = 'Images loaded! Starting game...'
+    infoText.textContent = 'Redo! Startar spelet...'
     infoText.classList.remove('loading')
 
     setTimeout(() => {
@@ -88,8 +97,8 @@ async function setupGame() {
     }, 1000)
 
   } catch (error) {
-    console.error('Error loading images:', error)
-    infoText.textContent = 'Error loading images. Please try again.'
+    console.error('Error loading game:', error)
+    infoText.textContent = 'Fel vid laddning. Försök igen.'
     infoText.classList.remove('loading')
     confirmButton.disabled = false
   }
@@ -104,8 +113,10 @@ function startGame() {
   // Set background image
   gameSection.style.backgroundImage = `url('${game.backgroundImage}')`
 
-  // Set duck image
+  // Set duck image and size from config
   ankan.style.backgroundImage = `url('${game.duckImage}')`
+  ankan.style.width = `${game.duckSize}px`
+  ankan.style.height = `${game.duckSize}px`
 
   // Initialize game state
   game.isRunning = true
@@ -143,9 +154,9 @@ function moveDuck() {
   const gameWidth = gameSection.offsetWidth
   const gameHeight = gameSection.offsetHeight
 
-  // Get duck dimensions
-  const duckWidth = 100 // Set in CSS
-  const duckHeight = 100 // Set in CSS
+  // Get duck dimensions from config
+  const duckWidth = game.duckSize
+  const duckHeight = game.duckSize
 
   // Calculate random position ensuring duck stays fully inside
   const maxX = gameWidth - duckWidth
@@ -235,11 +246,8 @@ function resetGame() {
   mainContent.classList.remove('hidden')
 
   // Reset form
-  infoText.textContent = 'Please wait...'
+  infoText.textContent = 'Duckhunt 2'
   confirmButton.disabled = false
-  backgroundInput.value = 0
-  gameLengthInput.value = 30
-  gameSpeedInput.value = 2
 
   // Clean up blob URLs
   if (game.duckImage) {
