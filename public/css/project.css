@@ -345,6 +345,33 @@ img {
   opacity: 0.9;
 }
 
+.play-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.play-form-label {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.play-select {
+  padding: 0.6rem 1.2rem;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.play-select option {
+  color: #333;
+  background: #fff;
+}
+
 .play-button {
   display: inline-block;
   padding: 1rem 3rem;

@@ -140,9 +140,15 @@
               i en separat sida där du kan fokusera helt på jakten. Lycka till!
             </p>
           </div>
-          <div class="play-launch">
-            <a href="duckhunt.html" class="play-button">Starta Spelet</a>
-          </div>
+          <form class="play-form">
+            <label for="play-difficulty" class="play-form-label">Välj svårighetsgrad:</label>
+            <select id="play-difficulty" class="play-select">
+              <option value="easy">🟢 Lätt</option>
+              <option value="normal" selected>🟡 Normal</option>
+              <option value="hard">🔴 Svår</option>
+            </select>
+            <a href="duckhunt.html?difficulty=normal" class="play-button" id="play-link">Starta Spelet</a>
+          </form>
         </div>
       </div>
     </section>

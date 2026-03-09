@@ -81,3 +81,14 @@ window.addEventListener('scroll', () => {
     siteHeader.classList.remove('scrolled')
   }
 })
+
+// Update play link when difficulty select changes
+const playDifficulty = document.getElementById('play-difficulty')
+const playLink = document.getElementById('play-link')
+
+if (playDifficulty && playLink) {
+  playDifficulty.addEventListener('change', () => {
+    const difficulty = playDifficulty.value
+    playLink.href = `duckhunt.html?difficulty=${difficulty}`
+  })
+}
