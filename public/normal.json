@@ -1,0 +1,9 @@
+{
+  "difficulty": "normal",
+  "label": "Normal",
+  "gameLength": 30,
+  "gameSpeed": 2,
+  "duckSize": 100,
+  "backgroundPicture": 0,
+  "description": "Balanserad utmaning med lagom tempo. Standard-läge."
+}
