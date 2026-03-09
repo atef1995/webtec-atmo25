@@ -1,0 +1,9 @@
+{
+  "difficulty": "hard",
+  "label": "Svår",
+  "gameLength": 20,
+  "gameSpeed": 1,
+  "duckSize": 70,
+  "backgroundPicture": 0,
+  "description": "Kort tid och snabba ankor. Bara för de modigaste!"
+}
