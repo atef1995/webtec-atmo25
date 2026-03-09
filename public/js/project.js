@@ -70,3 +70,14 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach((section) => {
   observer.observe(section)
 })
+
+// Header background change on scroll
+const siteHeader = document.querySelector('.site-header')
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    siteHeader.classList.add('scrolled')
+  } else {
+    siteHeader.classList.remove('scrolled')
+  }
+})
