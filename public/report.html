@@ -183,6 +183,81 @@
             mycket bättre. Det var också lärorikt att se hur man kan strukturera asynkron kod på ett sätt
             som gör den både effektiv och lättförståelig.</p>
         </section>
+
+        <section id="kmom10">
+          <h2>kmom10</h2>
+
+          <h3>Krav 1: Landningssida för spelet</h3>
+
+          <p>För projektet skapade jag en komplett onepage i <code>public/project.html</code> som marknadsför
+            Duckhunt 2. Sidan är uppbyggd i sektioner: en hero-sektion med animerad emoji och call-to-action-knapp,
+            en tvåkolumnslayout som beskriver spelidén, en trekolumnslayout med feature-kort, en spel-sektion där
+            användaren kan välja svårighetsgrad direkt på onepagen, och en highscore-sektion som förklarar
+            funktionen. Footer är indelad i tre kolumner med spelinformation, snabblänkar och kontaktinfo.
+            Allt är stilat i ett grönt tema med CSS-variabler och sidan är responsiv via media queries för
+            768px och 600px. JavaScript i <code>project.js</code> hanterar hamburgermenyn, smooth scrolling,
+            aktiv nav-highlighting via IntersectionObserver och header-scroll-effekten.</p>
+
+          <h3>Krav 2: Spelet Duckhunt, version 2</h3>
+
+          <p>Jag vidareutvecklade spelet från kmom06 med flera förbättringar. Det viktigaste kravet var att
+            flytta ut konfigurationen till tre separata JSON-filer: <code>easy.json</code>,
+            <code>normal.json</code> och <code>hard.json</code>. Varje fil innehåller inställningar för
+            speltid, hastighet, ankstorlek och bakgrundsbild. När användaren väljer svårighetsgrad i formuläret
+            på <code>duckhunt.html</code> hämtas rätt fil med <code>fetch()</code> och konfigurationen tillämpas
+            dynamiskt. Svårighetsgradsformuläret ersatte de gamla numeriska inputfälten med väldesignade
+            radioknappar. Ankans storlek varierar nu per svårighetsgrad — 130px på lätt, 100px normalt och
+            70px på svår. Onepagen har dessutom en svårighetsväljarelista som skickar vald nivå via URL-parameter
+            (<code>?difficulty=easy</code>) till spelet, som sedan automatiskt väljer rätt radioknapp.</p>
+
+          <h3>Krav 3: Highscorelista i tabell</h3>
+
+          <p>Highscore-systemet är implementerat i <code>main.js</code> som ett in-memory-array
+            (<code>highscores</code>) som nollställs automatiskt när sidan laddas om — precis som kravet
+            specificerar. Efter varje spelomgång sparas spelarens poäng, vald svårighetsgrad och tidsstämpel
+            i arrayen. Arrayen sorteras automatiskt fallande efter poäng. När spelet är slut visas en
+            game-over-overlay med spelarens slutpoäng och hela highscore-listan i en stylad tabell med
+            kolumnerna: plac, poäng, nivå och tid. Den senaste omgångens resultat markeras med gult i
+            tabellen. Under spelet visas poäng och nedräkningstimer tydligt på skärmen i en stilad poängruta.
+            En sektion i onepagen förklarar highscore-featuren för användaren.</p>
+
+          <h3>Allmänt om projektet</h3>
+
+          <p>Projektet gick överlag bra att genomföra. Det som tog mest tid var att refaktorera spelet från
+            hårdkodade värden till ett system som dynamiskt hämtar konfiguration via fetch och JSON-filer —
+            det krävde att man tänkte igenom hur data flödar genom applikationen. Onepagen var relativt
+            enkel att bygga eftersom jag hade kmom03 som mall, men att finslipa CSS, responsivitet och
+            JavaScript-interaktivitet tog sin tid. Det roligaste var att implementera highscore-systemet
+            eftersom det kopplade ihop spelets logik med en konkret visuell presentation. Det svåraste
+            var att hantera ESLint CSS-reglerna, som inte accepterade <code>background</code> som kortform
+            med <code>var()</code>-värden. Projektet känns som ett rimligt och välstrukturerat avslut
+            på kursen — det täcker HTML, CSS och JavaScript på ett balanserat sätt.</p>
+
+          <h3>TIL för kmom10</h3>
+
+          <p>Min TIL för detta kursmoment är att JSON-konfigurationsfiler via fetch är ett otroligt smidigt
+            mönster för att göra en applikation konfigurerbar utan att röra källkoden. Att separera data från
+            logik gör koden mer flexibel och lättare att underhålla. En enkel ändring i en JSON-fil kan
+            förändra hela spelupplevelsen utan att man behöver peta i JavaScript-koden.</p>
+
+          <h3>TIL för kursen som helhet</h3>
+
+          <p>Det övergripande jag tar med mig från kursen är hur HTML, CSS och JavaScript samverkar som ett
+            ekosystem. Varje teknik har sitt ansvarsområde: HTML för struktur, CSS för presentation och
+            JavaScript för beteende. Att ha jobbat igenom hela kedjan — från statiska sidor via responsiv
+            design och DOM-manipulation till asynkrona API-anrop och spelprogrammering — ger en solid
+            och bred grund att stå på inför vidare studier och projekt.</p>
+
+          <h3>Tankar om kursen (valfritt)</h3>
+
+          <p>Kursen har en bra progression från enkla HTML-sidor hela vägen till ett interaktivt spel med
+            asynkron kommunikation. Materialet är välstrukturerat och laborationerna är genomtänkta.
+            Framöver skulle det vara intressant med ett kursmoment som introducerar ett enkelt
+            komponentbaserat tänk, till exempel hur man kan återanvända HTML-strukturer med JavaScript-mallar.
+            Det hade gett en naturlig brygga till moderna frontend-ramverk. Sammantaget gav kursen mig
+            ett genuint intresse för webbutveckling. Betyg: 8/10 — jag rekommenderar kursen till alla
+            som vill lära sig webbutveckling från grunden på ett strukturerat sätt.</p>
+        </section>
       </article>
     </main>
     <aside class="aside">
@@ -194,6 +269,7 @@
         <li><a href="#kmom03">kmom03</a></li>
         <li><a href="#kmom04">kmom04</a></li>
         <li><a href="#kmom05">kmom05</a></li>
+        <li><a href="#kmom10">kmom10</a></li>
       </ul>
     </aside>
   </div>
