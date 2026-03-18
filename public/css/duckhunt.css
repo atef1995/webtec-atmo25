@@ -180,9 +180,29 @@ body {
 }
 
 .difficulty-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 1.1rem;
   font-weight: bold;
   color: #fff;
+}
+
+.difficulty-icon {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.difficulty-icon-easy {
+  color: #39d353;
+}
+
+.difficulty-icon-normal {
+  color: #ffd33d;
+}
+
+.difficulty-icon-hard {
+  color: #ff5c5c;
 }
 
 .difficulty-desc {
@@ -235,6 +255,30 @@ body {
   font-size: 1.4rem;
   color: #fff;
   margin-bottom: 20px;
+}
+
+/* Highscore Section Container */
+.highscore-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 200;
+  padding: 20px;
+  overflow-y: auto;
+  justify-content: center;
+}
+
+.highscore-section h2 {
+  font-size: 2rem;
+  color: #ffeb3b;
+  text-shadow: 3px 3px 0px #000;
+  margin-bottom: 16px;
 }
 
 /* Highscore Table */
