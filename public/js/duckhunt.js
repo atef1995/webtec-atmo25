@@ -1,8 +1,21 @@
+// In-session highscore list (cleared on page reload)
+const highscores = []
+const localDuckImage = 'img/duck-png.png'
+const localBackgrounds = [
+  'photo-1548679847-1d4ff48016c7.avif',
+  'photo-1548943544-56e76b7c16d0.avif',
+  'photo-1549472579-e133f59d8b23.avif',
+  'photo-1549558549-415fe4c37b60.avif'
+]
+
 // Global game object
 const game = {
   backgroundPicture: 0,
   gameLength: 30,
   gameSpeed: 2,
+  duckSize: 100,
+  difficulty: 'normal',
+  difficultyLabel: 'Normal',
   score: 0,
   timeRemaining: 0,
   isRunning: false,
@@ -16,80 +29,91 @@ const game = {
 const mainContent = document.getElementById('main-content')
 const gameSection = document.getElementById('game-section')
 const infoText = document.getElementById('info')
-const backgroundInput = document.getElementById('background-picture')
-const gameLengthInput = document.getElementById('game-length')
-const gameSpeedInput = document.getElementById('game-speed')
 const confirmButton = document.getElementById('confirmButton')
 const scoreDisplay = document.getElementById('score')
 const ankan = document.getElementById('ankan')
+const highscoreSection = document.getElementById('highscore-section')
 
-// Initialize input default values
-backgroundInput.value = 0
-gameLengthInput.value = 30
-gameSpeedInput.value = 2
+// Pre-select difficulty from URL query param (e.g. duckhunt.html?difficulty=easy)
+const params = new URLSearchParams(window.location.search)
+const urlDifficulty = params.get('difficulty')
+if (urlDifficulty) {
+  const radio = document.querySelector(`input[name="difficulty"][value="${urlDifficulty}"]`)
+  if (radio) radio.checked = true
+}
 
 // Event listener for confirm button
 confirmButton.addEventListener('click', setupGame)
 
-// Setup game function
+function preloadImage(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image()
+    image.onload = resolve
+    image.onerror = () => reject(new Error(`Kunde inte ladda bild: ${src}`))
+    image.src = src
+  })
+}
+
+// Setup game: fetch JSON config then load images
 async function setupGame() {
-  // Get user input values
-  game.backgroundPicture = parseInt(backgroundInput.value)
-  game.gameLength = parseInt(gameLengthInput.value)
-  game.gameSpeed = parseInt(gameSpeedInput.value)
-  game.score = 0
-  game.timeRemaining = game.gameLength
-
-  // Validate inputs
-  if (game.backgroundPicture < 0 || game.backgroundPicture > 5) {
-    alert('Background picture must be between 0 and 5')
-    return
-  }
-  if (![10, 20, 30].includes(game.gameLength)) {
-    alert('Game length must be 10, 20, or 30 seconds')
-    return
-  }
-  if (game.gameSpeed < 1 || game.gameSpeed > 3) {
-    alert('Game speed must be between 1 and 3')
+  const selectedRadio = document.querySelector('input[name="difficulty"]:checked')
+  if (!selectedRadio) {
+    alert('Välj en svårighetsgrad!')
     return
   }
 
-  // Show loading message
-  infoText.textContent = 'Loading images...'
+  const difficulty = selectedRadio.value
+
+  infoText.textContent = 'Laddar konfiguration...'
   infoText.classList.add('loading')
   confirmButton.disabled = true
 
   try {
-    // If background is 0, randomize it
-    const bgNumber = game.backgroundPicture === 0 
-      ? Math.floor(Math.random() * 5) + 1 
-      : game.backgroundPicture
+    // Fetch difficulty config from JSON file
+    const configResponse = await fetch(`${difficulty}.json`)
+    if (!configResponse.ok) throw new Error('Kunde inte ladda konfiguration')
+    const config = await configResponse.json()
 
-    // Fetch duck image
-    const duckUrl = 'https://raw.githubusercontent.com/bth-webtec/teacher/main/kmom06/duck/duck.png'
-    const duckResponse = await fetch(duckUrl)
-    if (!duckResponse.ok) throw new Error('Failed to fetch duck image')
-    const duckBlob = await duckResponse.blob()
-    game.duckImage = URL.createObjectURL(duckBlob)
+    // Apply config to game
+    game.gameLength = config.gameLength
+    game.gameSpeed = config.gameSpeed
+    game.duckSize = config.duckSize
+    game.backgroundPicture = config.backgroundPicture
+    game.difficulty = config.difficulty
+    game.difficultyLabel = config.label
+    game.score = 0
+    game.timeRemaining = game.gameLength
 
-    // Fetch background image
-    const bgUrl = `https://raw.githubusercontent.com/bth-webtec/teacher/main/kmom06/backgrounds/${bgNumber}.jpg`
-    const bgResponse = await fetch(bgUrl)
-    if (!bgResponse.ok) throw new Error('Failed to fetch background image')
-    const bgBlob = await bgResponse.blob()
-    game.backgroundImage = URL.createObjectURL(bgBlob)
+    infoText.textContent = 'Laddar bilder...'
 
-    // Images loaded successfully
-    infoText.textContent = 'Images loaded! Starting game...'
+    // Select local background image (0 means random)
+    let backgroundIndex = game.backgroundPicture - 1
+    if (
+      game.backgroundPicture === 0 ||
+      backgroundIndex < 0 ||
+      backgroundIndex >= localBackgrounds.length
+    ) {
+      backgroundIndex = Math.floor(Math.random() * localBackgrounds.length)
+    }
+
+    game.duckImage = localDuckImage
+    game.backgroundImage = `img/backgrounds/${localBackgrounds[backgroundIndex]}`
+
+    await Promise.all([
+      preloadImage(game.duckImage),
+      preloadImage(game.backgroundImage)
+    ])
+
+    infoText.textContent = 'Startar spelet...'
     infoText.classList.remove('loading')
 
     setTimeout(() => {
       startGame()
-    }, 1000)
+    }, 800)
 
   } catch (error) {
-    console.error('Error loading images:', error)
-    infoText.textContent = 'Error loading images. Please try again.'
+    console.error('Fel:', error)
+    infoText.textContent = 'Fel vid laddning. Försök igen.'
     infoText.classList.remove('loading')
     confirmButton.disabled = false
   }
@@ -97,157 +121,143 @@ async function setupGame() {
 
 // Start game function
 function startGame() {
-  // Hide setup screen, show game screen
   mainContent.classList.add('hidden')
   gameSection.classList.add('active')
+  highscoreSection.style.display = 'none'
 
-  // Set background image
+  // Apply duck size from config
+  ankan.style.width = `${game.duckSize}px`
+  ankan.style.height = `${game.duckSize}px`
+  ankan.style.display = 'block'
+
   gameSection.style.backgroundImage = `url('${game.backgroundImage}')`
-
-  // Set duck image
   ankan.style.backgroundImage = `url('${game.duckImage}')`
 
-  // Initialize game state
   game.isRunning = true
   game.score = 0
   game.timeRemaining = game.gameLength
 
-  // Update score display
+  // Reset score display position
+  scoreDisplay.style.cssText = ''
   updateScore()
 
-  // Start game timer (countdown)
+  // Countdown timer
   game.timerIntervalId = setInterval(() => {
     game.timeRemaining--
     updateScore()
-
     if (game.timeRemaining <= 0) {
       endGame()
     }
   }, 1000)
 
-  // Start duck movement
+  // Duck movement
   moveDuck()
   game.intervalId = setInterval(moveDuck, game.gameSpeed * 1000)
 }
 
 // Update score display
 function updateScore() {
-  scoreDisplay.textContent = `Score: ${game.score} | Time: ${game.timeRemaining}s`
+  scoreDisplay.textContent = `Poäng: ${game.score} | Tid: ${game.timeRemaining}s`
 }
 
-// Move duck to random position
+// Move duck to random position within game area
 function moveDuck() {
   if (!game.isRunning) return
 
-  // Get game section dimensions
-  const gameWidth = gameSection.offsetWidth
-  const gameHeight = gameSection.offsetHeight
+  const maxX = gameSection.offsetWidth - game.duckSize
+  const maxY = gameSection.offsetHeight - game.duckSize
 
-  // Get duck dimensions
-  const duckWidth = 100 // Set in CSS
-  const duckHeight = 100 // Set in CSS
-
-  // Calculate random position ensuring duck stays fully inside
-  const maxX = gameWidth - duckWidth
-  const maxY = gameHeight - duckHeight
-
-  const randomX = Math.floor(Math.random() * maxX)
-  const randomY = Math.floor(Math.random() * maxY)
-
-  // Position the duck
-  ankan.style.left = `${randomX}px`
-  ankan.style.top = `${randomY}px`
+  ankan.style.left = `${Math.floor(Math.random() * maxX)}px`
+  ankan.style.top = `${Math.floor(Math.random() * maxY)}px`
 }
 
 // Handle duck click
 function handleDuckClick() {
   if (!game.isRunning) return
-
-  // Increment score
   game.score++
   updateScore()
-
-  // Move duck immediately after being clicked
   moveDuck()
 }
 
-// Add click event listener to duck
 ankan.addEventListener('click', handleDuckClick)
 
-// End game function
+// End game: save score and show highscore table
 function endGame() {
-  // Stop the game
   game.isRunning = false
 
-  // Clear intervals
-  if (game.intervalId) {
-    clearInterval(game.intervalId)
-    game.intervalId = null
-  }
-  if (game.timerIntervalId) {
-    clearInterval(game.timerIntervalId)
-    game.timerIntervalId = null
-  }
+  clearInterval(game.intervalId)
+  game.intervalId = null
+  clearInterval(game.timerIntervalId)
+  game.timerIntervalId = null
 
-  // Hide duck
   ankan.style.display = 'none'
+  scoreDisplay.style.display = 'none'
 
-  // Show final score
-  scoreDisplay.textContent = `Game Over! Final Score: ${game.score}`
-  scoreDisplay.style.fontSize = '3rem'
-  scoreDisplay.style.top = '50%'
-  scoreDisplay.style.left = '50%'
-  scoreDisplay.style.transform = 'translate(-50%, -50%)'
-  scoreDisplay.style.right = 'auto'
+  // Clear previous "current" flags and add new score
+  highscores.forEach(h => { h.isCurrent = false })
+  highscores.push({ score: game.score, difficulty: game.difficultyLabel, isCurrent: true })
+  highscores.sort((a, b) => b.score - a.score)
 
-  // Create restart button
+  showHighscores()
+
+  // Play again button
   const restartButton = document.createElement('button')
-  restartButton.textContent = 'Play Again'
+  restartButton.textContent = 'Spela Igen'
   restartButton.className = 'confirmButton'
-  restartButton.style.position = 'absolute'
-  restartButton.style.top = '60%'
-  restartButton.style.left = '50%'
-  restartButton.style.transform = 'translate(-50%, -50%)'
+  restartButton.id = 'restartButton'
   restartButton.addEventListener('click', resetGame)
-  gameSection.appendChild(restartButton)
+  highscoreSection.appendChild(restartButton)
 }
 
-// Reset game function
+// Render highscore table
+function showHighscores() {
+  highscoreSection.innerHTML = ''
+
+  const title = document.createElement('h2')
+  title.textContent = `Spelet slut! Poäng: ${game.score}`
+  highscoreSection.appendChild(title)
+
+  const subtitle = document.createElement('p')
+  subtitle.textContent = 'Highscorelista'
+  subtitle.style.cssText = 'color:#ff5722;font-size:1.1rem;margin-bottom:12px;'
+  highscoreSection.appendChild(subtitle)
+
+  const table = document.createElement('table')
+  table.className = 'highscore-table'
+
+  const thead = document.createElement('thead')
+  thead.innerHTML = '<tr><th>#</th><th>Poäng</th><th>Svårighetsgrad</th></tr>'
+  table.appendChild(thead)
+
+  const tbody = document.createElement('tbody')
+  highscores.forEach((entry, index) => {
+    const tr = document.createElement('tr')
+    if (entry.isCurrent) tr.className = 'current-score'
+    tr.innerHTML = `<td>${index + 1}</td><td>${entry.score}</td><td>${entry.difficulty}</td>`
+    tbody.appendChild(tr)
+  })
+  table.appendChild(tbody)
+
+  highscoreSection.appendChild(table)
+  highscoreSection.style.display = 'flex'
+}
+
+// Reset game back to setup screen
 function resetGame() {
-  // Remove restart button if it exists
-  const restartButton = gameSection.querySelector('.confirmButton')
-  if (restartButton) {
-    restartButton.remove()
-  }
+  highscoreSection.style.display = 'none'
+  highscoreSection.innerHTML = ''
 
-  // Reset score display styling
-  scoreDisplay.style.fontSize = '2rem'
-  scoreDisplay.style.top = '20px'
-  scoreDisplay.style.right = '20px'
-  scoreDisplay.style.left = 'auto'
-  scoreDisplay.style.transform = 'none'
+  scoreDisplay.style.cssText = ''
+  scoreDisplay.style.display = ''
 
-  // Show duck again
   ankan.style.display = 'block'
 
-  // Hide game section, show setup
   gameSection.classList.remove('active')
   mainContent.classList.remove('hidden')
 
-  // Reset form
-  infoText.textContent = 'Please wait...'
+  infoText.textContent = 'Duckhunt 2'
   confirmButton.disabled = false
-  backgroundInput.value = 0
-  gameLengthInput.value = 30
-  gameSpeedInput.value = 2
 
-  // Clean up blob URLs
-  if (game.duckImage) {
-    URL.revokeObjectURL(game.duckImage)
-    game.duckImage = null
-  }
-  if (game.backgroundImage) {
-    URL.revokeObjectURL(game.backgroundImage)
-    game.backgroundImage = null
-  }
+  game.duckImage = null
+  game.backgroundImage = null
 }
