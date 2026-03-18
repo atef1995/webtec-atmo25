@@ -330,7 +330,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  background-color: blue;
   color: #fff;
   box-shadow: var(--shadow-sm);
 }
