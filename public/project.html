@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Duckhunt 2 - Projektet</title>
   <link rel="stylesheet" href="css/project.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <meta name="description" content="Duckhunt 2 - En uppföljare till det klassiska spelet">
 </head>
 
@@ -13,7 +14,7 @@
   <header class="site-header">
     <div class="header-container">
       <a href="project.html" class="logo">
-        <img src="img/logo-1.png" alt="Logotyp">
+        <img src="img/duck-logo.png" alt="Duck-logo">
         <span class="logo-text">Duckhunt 2</span>
       </a>
       <nav class="navbar">
@@ -35,13 +36,18 @@
     <section id="hero" class="section hero-section">
       <div class="container">
         <div class="hero-content">
-          <div class="hero-icon">🦆</div>
+          <div class="hero-icon">
+            <img src="img/duck-logo.png" alt="Duckhunt 2 logo">
+          </div>
           <h1 class="hero-title">Duckhunt 2</h1>
           <p class="hero-subtitle">
             Den klassiska upplevelsen är tillbaka - snabbare, snyggare och mer
             utmanande än någonsin. Sikta, skjut och slå highscore!
           </p>
-          <a href="#play" class="cta-button">🎯 Spela Nu</a>
+          <a href="#play" class="cta-button">
+            <i class="bi bi-crosshair2 cta-icon" aria-hidden="true"></i>
+            Spela Nu
+          </a>
         </div>
       </div>
     </section>
@@ -89,7 +95,9 @@
         </div>
         <div class="three-column-layout">
           <div class="column feature-card">
-            <div class="feature-icon">🎯</div>
+            <div class="feature-icon" aria-hidden="true">
+              <i class="bi bi-crosshair2"></i>
+            </div>
             <h3>Sikta &amp; Klicka</h3>
             <p>
               Klicka på ankorna som dyker upp på skärmen för att få poäng.
@@ -97,7 +105,9 @@
             </p>
           </div>
           <div class="column feature-card">
-            <div class="feature-icon">⚡</div>
+            <div class="feature-icon" aria-hidden="true">
+              <i class="bi bi-speedometer2"></i>
+            </div>
             <h3>Tre Svårighetsgrader</h3>
             <p>
               Välj mellan Lätt, Normal och Svår. Varje nivå har unik hastighet,
@@ -106,7 +116,9 @@
             </p>
           </div>
           <div class="column feature-card">
-            <div class="feature-icon">🏆</div>
+            <div class="feature-icon" aria-hidden="true">
+              <i class="bi bi-trophy-fill"></i>
+            </div>
             <h3>Highscorelista</h3>
             <p>
               Efter varje spelomgång sparas din poäng och svårighetsgrad i en
@@ -144,9 +156,9 @@
           <form class="play-form">
             <label for="play-difficulty" class="play-form-label">Välj svårighetsgrad:</label>
             <select id="play-difficulty" class="play-select">
-              <option value="easy">🟢 Lätt</option>
-              <option value="normal" selected>🟡 Normal</option>
-              <option value="hard">🔴 Svår</option>
+              <option value="easy">Lätt</option>
+              <option value="normal" selected>Normal</option>
+              <option value="hard">Svår</option>
             </select>
             <a href="duckhunt.html?difficulty=normal" class="play-button" id="play-link">Starta Spelet</a>
           </form>
